@@ -1,0 +1,33 @@
+В качестве основы для тестирования кросс-компиляции взята программа /src/lesson1/menu.go
+Моя система - Linux Mint x64
+
+1. Сборка GOOS=windows GOARCH=amd64
+
+$ ./go_build_menu_go.exe
+bash: ./go_build_menu_go.exe: cannot execute binary file: Exec format error
+
+$ file go_build_menu_go.exe
+go_build_menu_go.exe: PE32+ executable (console) x86-64 (stripped to external PDB), for MS Windows
+
+
+2. Сборка GOOS=darwin GOARCH=amd64
+
+$ ./go_build_menu_go_darwin
+bash: ./go_build_menu_go_darwin: cannot execute binary file: Exec format error
+
+$ file go_build_menu_go_darwin
+go_build_menu_go_darwin: Mach-O 64-bit x86_64 executable
+
+
+3. Сборка GOOS=linux GOARCH=386 GO386=softfloat
+
+$ ./go_build_menu_go
+Choose a dish from the menu
+1 - Beef
+2 - Chicken
+3 - Fish
+
+Успешный запуск программы
+
+$ file go_build_menu_go
+go_build_menu_go: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, Go BuildID=Ver9WrqHf77n_RW1t3cg/B_vFcphcRtijHWRzbL-C/Ry3MQWhXweSl17p49deJ/ZA3rYVC-cZUKtqQX2Pa1, not stripped
